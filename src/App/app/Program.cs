@@ -1,4 +1,4 @@
-using inventory.Common;
+using Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,8 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddMediator();
-builder.Services.AddEndpoints();
+builder.Services.AddEndpoints(typeof(ItemsService.CreateItem).Assembly);
+builder.Services.AddEndpoints(typeof(SupplierService.CreateSupplier).Assembly);
+builder.Services.AddServices([typeof(ItemsService.CreateItem).Assembly, typeof(SupplierService.CreateSupplier).Assembly]);
 
 var app = builder.Build();
 
@@ -22,8 +23,3 @@ app.UseHttpsRedirection();
 app.MapEndpoints();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
