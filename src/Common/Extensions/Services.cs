@@ -5,7 +5,7 @@ namespace Extensions;
 
 public static class ServicesExtensions
 {
-    public static void AddServices(this IServiceCollection services, IEnumerable<Assembly> assemblies)
+    public static void AddServicesFrom(this IServiceCollection services, IEnumerable<Assembly> assemblies)
     {
         services
             .Scan(scan =>

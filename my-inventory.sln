@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{7A6F74
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions", "src\Common\Extensions\Extensions.csproj", "{7EEFE989-D378-4E1A-B12B-5EE59C177AA0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBroker", "src\Common\MessageBroker\MessageBroker.csproj", "{2961E3E8-A91A-4542-A2BD-A2B58ABDCF76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,7 @@ Global
 		{8203C7C1-6A04-4171-8C9B-9CFBFB1CF45C} = {06C1AC52-6D0A-47A3-900F-5E9AF8D83A93}
 		{7A6F7420-8F92-4279-A149-223AB3D8AA4F} = {ECB01D53-3203-4060-B35C-99B65D667A20}
 		{7EEFE989-D378-4E1A-B12B-5EE59C177AA0} = {7A6F7420-8F92-4279-A149-223AB3D8AA4F}
+		{2961E3E8-A91A-4542-A2BD-A2B58ABDCF76} = {7A6F7420-8F92-4279-A149-223AB3D8AA4F}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1646421F-4B32-48FB-8DD1-26CCEC9C780F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -65,5 +68,9 @@ Global
 		{7EEFE989-D378-4E1A-B12B-5EE59C177AA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EEFE989-D378-4E1A-B12B-5EE59C177AA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EEFE989-D378-4E1A-B12B-5EE59C177AA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2961E3E8-A91A-4542-A2BD-A2B58ABDCF76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2961E3E8-A91A-4542-A2BD-A2B58ABDCF76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2961E3E8-A91A-4542-A2BD-A2B58ABDCF76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2961E3E8-A91A-4542-A2BD-A2B58ABDCF76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

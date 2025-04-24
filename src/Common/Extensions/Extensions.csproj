@@ -8,9 +8,9 @@
 
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
-        <PackageReference Include="Microsoft.AspNetCore.Routing" />
+        <PackageVersion Include="Microsoft.AspNetCore.Routing" Version="2.3.0" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
-        <PackageReference Include="Scrutor" />
+        <PackageReference Include="Scrutor" Version="6.0.1" />
     </ItemGroup>
 
 </Project>

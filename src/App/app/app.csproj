@@ -14,8 +14,15 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Common\Extensions\Extensions.csproj" />
+      <ProjectReference Include="..\..\Common\MessageBroker\MessageBroker.csproj" />
       <ProjectReference Include="..\..\Items\ItemsService\ItemsService.csproj" />
       <ProjectReference Include="..\..\Suppliers\SupplierService\SupplierService.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="appsettings.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

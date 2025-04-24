@@ -1,4 +1,5 @@
 using Extensions;
+using MessageBroker;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,9 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddEndpoints(typeof(ItemsService.CreateItem).Assembly);
-builder.Services.AddEndpoints(typeof(SupplierService.CreateSupplier).Assembly);
-builder.Services.AddServices([typeof(ItemsService.CreateItem).Assembly, typeof(SupplierService.CreateSupplier).Assembly]);
+builder.Services.AddEndpointsFrom([typeof(ItemsService.CreateItem).Assembly, typeof(SupplierService.CreateSupplier).Assembly]);
+builder.Services.AddServicesFrom([typeof(ItemsService.CreateItem).Assembly, typeof(SupplierService.CreateSupplier).Assembly]);
+builder.Services.AddMessageBroker(builder.Configuration);
 
 var app = builder.Build();
 
