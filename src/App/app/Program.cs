@@ -1,3 +1,4 @@
+using System.Reflection;
 using Extensions;
 using MessageBroker;
 
@@ -5,11 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+Assembly[] moduleAssemblies = [typeof(ItemsService.EntryPoint).Assembly, typeof(SupplierService.EntryPoint).Assembly];
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddEndpointsFrom([typeof(ItemsService.EntryPoint).Assembly, typeof(SupplierService.CreateSupplier).Assembly]);
-builder.Services.AddServicesFrom([typeof(ItemsService.EntryPoint).Assembly, typeof(SupplierService.CreateSupplier).Assembly]);
-builder.Services.AddMessageBroker(builder.Configuration);
+builder.Services.AddEndpointsFrom(moduleAssemblies);
+builder.Services.AddServicesFrom(moduleAssemblies);
+builder.Services.AddMessageBroker(builder.Configuration, moduleAssemblies);
 
 var app = builder.Build();
 

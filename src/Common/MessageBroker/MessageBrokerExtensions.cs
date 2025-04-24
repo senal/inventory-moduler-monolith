@@ -1,3 +1,4 @@
+using System.Reflection;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,7 +8,7 @@ namespace MessageBroker;
 
 public static class MessageBrokerExtensions
 {
-    public static IServiceCollection AddMessageBroker(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddMessageBroker(this IServiceCollection services, IConfiguration configuration, IEnumerable<Assembly> assemblies)
     {
         
         services.Configure<MessageBrokerSettings>(configuration.GetSection("MessageBroker"));
@@ -15,6 +16,10 @@ public static class MessageBrokerExtensions
 
         services.AddMassTransit(cfg =>
         {
+            foreach (var assembly in assemblies)
+            {
+                cfg.AddConsumers(assembly);
+            }
             cfg.SetKebabCaseEndpointNameFormatter();
             cfg.UsingRabbitMq((context, configurator) =>
             {
@@ -24,7 +29,9 @@ public static class MessageBrokerExtensions
                     host.Username(settings.UserName);
                     host.Password(settings.Password);
                 });
+                configurator.ConfigureEndpoints(context);
             });
+            
         });
 
         services.AddScoped<IEventBus, EventBus>();
