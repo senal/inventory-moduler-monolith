@@ -1,6 +1,20 @@
 version: '3.8'
 
 services:
+  inventory-db:
+    image: postgres:15
+    container_name: Inventory.Db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: Password123!
+      POSTGRES_DB: inventory
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - db
   inventory-mb:
     image: rabbitmq:3-management
     container_name: Inventory.RabbitMq
@@ -17,5 +31,7 @@ services:
       - rabbitmq_net
 volumes:
   rabbitmq_data:
+  postgres_data:
 networks:
   rabbitmq_net:
+  db:
