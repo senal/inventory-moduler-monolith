@@ -1,4 +1,6 @@
 using Extensions;
+using ItemEvents;
+using MessageBroker;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -23,10 +25,11 @@ public interface ICreateItemHandler
 }
 
 [Scoped]
-public class CreateItemHandler : ICreateItemHandler
+public class CreateItemHandler(IEventBus eventBus) : ICreateItemHandler
 {
     public async Task<CreateItemResponse> Handle(CreateItemRequest request, CancellationToken cancellationToken)
     {
+        await eventBus.PublishAsync(new ItemCreatedEvent{ Id = Guid.NewGuid()}, cancellationToken);
         return await Task.FromResult(new CreateItemResponse(Guid.NewGuid()));
     }
 }
@@ -34,3 +37,5 @@ public class CreateItemHandler : ICreateItemHandler
 
 public record CreateItemRequest(string ItemName);
 public record CreateItemResponse(Guid Id);
+
+

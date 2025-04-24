@@ -7,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddEndpointsFrom([typeof(ItemsService.CreateItem).Assembly, typeof(SupplierService.CreateSupplier).Assembly]);
-builder.Services.AddServicesFrom([typeof(ItemsService.CreateItem).Assembly, typeof(SupplierService.CreateSupplier).Assembly]);
+builder.Services.AddEndpointsFrom([typeof(ItemsService.EntryPoint).Assembly, typeof(SupplierService.CreateSupplier).Assembly]);
+builder.Services.AddServicesFrom([typeof(ItemsService.EntryPoint).Assembly, typeof(SupplierService.CreateSupplier).Assembly]);
 builder.Services.AddMessageBroker(builder.Configuration);
 
 var app = builder.Build();
