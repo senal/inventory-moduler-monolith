@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Security.Cryptography;
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +26,10 @@ public static class MessageBrokerExtensions
                 cfg.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(true));
             }
             cfg.SetKebabCaseEndpointNameFormatter();
+            cfg.AddConfigureEndpointsCallback((_, _, endpointConfig) =>
+            {
+                endpointConfig.UseMessageRetry(r => r.Immediate(3));
+            });
             cfg.UsingRabbitMq((context, configurator) =>
             {
                 var settings = context.GetRequiredService<IOptions<MessageBrokerSettings>>().Value;
