@@ -14,7 +14,7 @@ public class CreateSupplier : IEndpoint
                 ICreateSupplierHandler handler) =>
             {
                 var results = await handler.Handle(request, cancellationToken);
-                return Results.Ok(results);
+                return TypedResults.Ok(results);
             });
     }
 }

@@ -3,6 +3,7 @@ using ItemEvents;
 using MessageBroker;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Routing;
 
 namespace ItemsService;
@@ -10,12 +11,14 @@ namespace ItemsService;
 public class CreateItem : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
-    { 
-        app.MapPost("api/items/create", async (CreateItemRequest request, CancellationToken cancellationToken, ICreateItemHandler handler) =>
-        {
-            var results = await handler.Handle(request, cancellationToken);
-            return Results.Ok(results);
-        });
+    {
+        app.MapPost("api/items/create",
+            async Task<Results<Ok<CreateItemResponse>, NotFound, BadRequest, ProblemHttpResult>> (CreateItemRequest request,
+                CancellationToken cancellationToken, ICreateItemHandler handler) =>
+            {
+                var results = await handler.Handle(request, cancellationToken);
+                return TypedResults.Ok(results);
+            });
     }
 }
 

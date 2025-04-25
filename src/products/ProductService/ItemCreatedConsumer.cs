@@ -2,13 +2,12 @@ using ItemEvents;
 using MassTransit;
 using MessageBroker;
 
-namespace SupplierService;
+namespace ProductService;
 
 public class ItemCreatedConsumer : Consumer<ItemCreatedEvent>
 {
     public override Task Consume(ConsumeContext<ItemCreatedEvent> context)
     {
-        throw new Exception();
         var item = context.Message.Id;
         return Task.CompletedTask;
     }

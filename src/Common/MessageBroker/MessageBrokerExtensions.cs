@@ -19,6 +19,10 @@ public static class MessageBrokerExtensions
             foreach (var assembly in assemblies)
             {
                 cfg.AddConsumers(assembly);
+                // distinguish endpoints/queues by the namespaces/moule name within the modular monolith
+                // in microservices each service can provide a prefix to distinguish endpoints/queues
+                // e.g new KebabCaseEndpointNameFormatter("my-service-A", includeNamespace: false)
+                cfg.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(true));
             }
             cfg.SetKebabCaseEndpointNameFormatter();
             cfg.UsingRabbitMq((context, configurator) =>
